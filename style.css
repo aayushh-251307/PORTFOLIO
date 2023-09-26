@@ -1,0 +1,301 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 12vh;
+  background-color: rgba(11, 8, 48, 0.701);
+}
+/* header  {
+  position: sticky;
+  top: 0; */
+
+nav ul {
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  list-style: none;
+  margin: 0 23px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+nav ul li a:hover {
+  color: rgb(171, 171, 238);
+  font-size: 1.04rem;
+}
+
+.left a:hover {
+  color: rgb(135, 135, 223);
+  font-size: 1.99rem;
+}
+
+.left {
+  font-size: 3vmax;
+}
+
+.left a {
+  text-decoration: none;
+  color: white;
+}
+
+main {
+  background-color: rgb(28 22 59);
+}
+
+main h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.footer {
+  background-color: black;
+  padding-top: 30px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.footer ul {
+  list-style: none;
+}
+.footer ul a {
+  text-decoration: none;
+  color: white;
+}
+.footer-col {
+  margin: 0 15px;
+}
+
+.footer-col p {
+  width: 550px;
+  text-align: justify;
+}
+.footer h4 {
+  text-align: left;
+}
+
+.footer ul li a:hover {
+  color: royalblue;
+  font-size: 1.04rem;
+}
+.foot-copy {
+  background-color: purple;
+  text-align: center;
+}
+
+.firstSection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* height: 82vh; */
+  padding-top: 20px;
+}
+.firstSection .left {
+  padding: 10px 0;
+}
+.firstSection .right {
+  padding: 10px 0;
+}
+.firstSection .left img {
+  position: static;
+  width: 73vh;
+}
+main .firstSection .right #intro {
+  font-size: 3vmax;
+  padding-top: 65px;
+}
+main .firstSection .right #pass {
+  font-size: 3vmax;
+}
+main .firstSection .right #element {
+  font-size: 2rem;
+}
+
+button {
+  padding: 19px;
+  margin: 12px;
+  border: 1px solid black;
+  background-color: #2d9ec2;
+
+  border-radius: 20px;
+  font-size: 1rem;
+}
+button:hover {
+  box-shadow: 5px 5px 0px black;
+  transition: all ease 0.5s;
+}
+.secondSection {
+  align-items: center;
+  /* height: 70vh; */
+  display: flex;
+  flex-direction: column;
+  /* width: 52vw; */
+  text-align: center;
+  background-color: rgb(23 27 39);
+  padding: 2vh;
+  margin: auto;
+}
+
+.secondSection h3 {
+  font-size: 2rem;
+}
+main .secondSection p {
+  text-align: justify;
+  margin: 11px;
+}
+.secondSection img {
+  width: 25vh;
+
+  border: 2px solid white;
+  border-radius: 104px;
+}
+/* -----------------------------projects section ------------------------------------------------------------------ */
+.third {
+  text-align: center;
+  font-size: 2rem;
+}
+.thirdSection {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  /* height: 55vh; */
+  padding-top: 20px;
+  padding-bottom: 2vh;
+  text-align: center;
+}
+
+.projectsthird {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; 
+  height: 400px;
+  width: 400px;
+  text-align: center;
+  background-color: rgb(23 27 39);
+ 
+  margin: auto;
+}
+
+/* .thirdSection .third-left {
+  height: 45vh;
+  width: 34vw;
+  background-color: rgb(23 27 39);
+  text-align: justify;
+  padding: 12px;
+}
+.thirdSection .third-right {
+  height: 45vh;
+  width: 34vw;
+  background-color: rgb(23 27 39);
+  text-align: justify;
+  padding: 12px;
+}
+.thirdSection .third-left a {
+  text-decoration: none;
+  color: white;
+}
+.thirdSection .third-left a:hover {
+  color: blueviolet;
+}
+.thirdSection .third-left a h3 {
+  text-align: center;
+}
+
+.thirdSection .third-left p {
+  padding: 10px;
+}
+.thirdSection .third-right a {
+  text-decoration: none;
+  color: white;
+}
+.thirdSection .third-right a:hover {
+  color: blueviolet;
+}
+.thirdSection .third-right a h3 {
+  text-align: center;
+}
+
+.thirdSection .third-right p {
+  padding: 10px;
+} */
+/* -------------------contact section --------------------------------------------*/
+#contactme {
+  padding: 10px;
+}
+.contact {
+  display: flex;
+  text-align: center;
+
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+#contactme .heading {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.contactleft {
+  text-align: center;
+}
+.contactright {
+  text-align: center;
+}
+
+.fourthSection {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  height: 40vh;
+  width: 30vw;
+  text-align: center;
+  background-color: rgb(23 27 39);
+  padding: -2vh 4vw;
+  margin: auto;
+}
+
+.fourthSection a i {
+  font-size: 3rem;
+  color: white;
+}
+
+.fourthSection a i:hover {
+  font-size: 3.2rem;
+  color: white;
+}
+
+button a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+}
+/* button a:hover {
+  text-decoration: none;
+  color: royalblue;
+  font-size: 1.6rem;
+} */
+
+.social-links a i {
+  font-size: 2vw;
+  color: white;
+}
+.social-links a i:hover {
+  font-size: 2.2vw;
+  color: royalblue;
+}
