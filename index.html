@@ -1,251 +1,698 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Personal Portfolio Website</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aayush Yadav — Fullstack &amp; AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F1420;
+    --surface:#161C2C;
+    --surface-2:#1D2438;
+    --line:#2A3350;
+    --text:#E8E6DE;
+    --text-muted:#8B93A7;
+    --amber:#E8A33D;
+    --blue:#5FA8D3;
+    --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--amber); color:var(--ink);}
+  a{color:inherit; text-decoration:none;}
 
-  <body>
-    <header>
-      <nav>
-        <div class="left">Aayushh's Portfolio</div>
-        <div class="right">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#aboutme">About Me</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contactme">Contact Me</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    <main>
-      <h2>Welcome to My Portfolio</h2>
-      <div class="firstSection">
-        <div class="left">
-          <img src="bg.png" alt="web developer" />
-        </div>
-        <div class="right">
-          <div id="intro">My name is Aayushh Yadav</div>
-          <div id="pass">and i am a passionate</div>
-          <span id="element"></span>
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .tag::before{
+    content:"";
+    width:6px; height:6px;
+    background:var(--amber);
+    display:inline-block;
+  }
 
-          <br />
-          <button class="resume">
-            <a href="/project1.html">View Resume</a>
-          </button>
-          <button class="github">
-            <a href="https://github.com/aayushh-251307">Visit My Github</a>
-          </button>
-        </div>
-      </div>
-      <hr />
-      <section id="aboutme">
-        <div class="secondSection">
-          <div class="first">
-            <h3>About Me</h3>
-          </div>
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
 
-          <div class="second">
-            <p>
-              Hello there! I'm Aayushh, an enthusiastic beginner-level web
-              developer eager to explore the exciting world of web technologies.
-              🌐🎓 I'm currently embarking on a journey to master the art of
-              crafting beautiful and functional websites. With a solid foundation
-              in HTML, CSS, and JavaScript, I'm eager to expand my skills and
-              contribute to the ever-evolving web landscape
-            </p>
-          </div>
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    background:rgba(15,20,32,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:64px;
+  }
+  .logo{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:0.95rem;
+  }
+  .logo span{color:var(--amber);}
+  .navlinks{
+    display:flex;
+    gap:32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    color:var(--text-muted);
+  }
+  .navlinks a{transition:color 0.2s;}
+  .navlinks a:hover{color:var(--text);}
+  .navlinks a:focus-visible, a:focus-visible, button:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+  }
+  @media (max-width:720px){ .navlinks{display:none;} }
 
-          <div class="third">
-            <img src="image (2).jpg" alt="profile pic" />
-          </div>
-        </div>
-      </section>
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:160px 0 100px;
+    position:relative;
+    border-bottom:1px solid var(--line);
+  }
+  header.hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media (max-width:860px){
+    header.hero .wrap{grid-template-columns:1fr; gap:64px;}
+    header.hero{padding:140px 0 72px;}
+  }
 
-      <hr />
-      <section id="projects">
-        <div class="third"><h3>Projects</h3></div>
-      <div class="thirdSection">
-        <div class="third-left">
-          <div class="projectsthird">
-            <h3>Portfolio Using Html</h3>
-          <p>
-            I designed a simple webpage using HTML to showcase my content. It
-            features structured text, headings, paragraphs, and links. The HTML
-            code ensures proper formatting and layout, making it accessible and
-            user-friendly.
-          </p>
+  .eyebrow{margin-bottom:20px;}
+  h1.name{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.05;
+    margin-bottom:18px;
+  }
+  .role-line{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:1.05rem;
+    color:var(--blue);
+    margin-bottom:22px;
+  }
+  .role-line .sep{color:var(--text-muted); margin:0 10px;}
+  p.pitch{
+    color:var(--text-muted);
+    font-size:1.05rem;
+    max-width:46ch;
+    margin-bottom:36px;
+  }
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    padding:13px 22px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    transition:all 0.2s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .btn-primary{
+    background:var(--amber);
+    color:var(--ink);
+    border-color:var(--amber);
+    font-weight:600;
+  }
+  .btn-primary:hover{background:#f3b658; border-color:#f3b658;}
+  .btn-ghost{color:var(--text);}
+  .btn-ghost:hover{border-color:var(--text-muted); background:var(--surface);}
 
-          <button onclick="window.location.href='project1.html'">Click here to View</button>
-          </div>
-          
-        </div>
-        <div class="third-right">
-          <div class="projectsthird"><h3>Portfolio Using Html & CSS</h3>
-            <p>
-              I crafted a webpage with HTML and CSS, combining structure and style
-              seamlessly. HTML provided the content framework, while CSS enhanced
-              aesthetics with fonts, colors, and layouts. The result is an
-              engaging and visually appealing website, offering a harmonious user
-              experience.
-            </p>
-  
-            <button onclick="window.location.href='project1.html'">Click here to View</button></div>
-          
-        </div>
-      </div>
-      </section>
-      <hr />
-      <section id="skills">
-        
-      </section>
+  /* ---------- STACK DIAGRAM (signature element) ---------- */
+  .stack{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .layer{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    cursor:default;
+    transition:transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    position:relative;
+  }
+  .layer:hover{
+    transform:translateX(6px);
+    border-color:var(--amber);
+    background:var(--surface-2);
+  }
+  .layer:hover .layer-detail{opacity:1; transform:translateY(0);}
+  .layer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+  }
+  .layer-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    color:var(--text-muted);
+  }
+  .layer-name{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:1.05rem;
+    margin-top:4px;
+  }
+  .layer-detail{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--blue);
+    opacity:0;
+    transform:translateY(-4px);
+    transition:all 0.25s ease;
+    margin-top:8px;
+  }
+  .stack-caption{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    color:var(--text-muted);
+    margin-top:14px;
+    text-align:center;
+  }
 
-      <section id="contactme">
-        <div class="heading">
-          <h3>Contact Me</h3>
-        </div>
-        <div class="contact">
-          <div class="contactleft">
-         
-            <div class="fourthSection">
-  
-              <div class="first">
-                <a href="tel:+918924868289"
-              ><i class="fa fa-phone" ></i
-            ><br>Call</a>
-              </div>
-            
-            
-           <div class="second">
-            <a href="mailto:aayushhyadava@gmail.com"
-            ><i class="fa fa-map-marker"></i><br>location
-          </a>
-           </div>
-             
-             
-          </div>
-        </div>
-          
-          <div class="contactright">
-          
-            <div class="fourthSection">
-              <div class="first">
-                
-              <a href="https://github.com/aayushh-251307"
-              ><i class="fa-brands fa-github" ></i
-            ><br>Github</a>
-            
-              </div>
-              <div class="second">
-                
-            <a href="mailto:aayushhyadava@gmail.com"
-            ><i class="material-icons">mail</i
-          ><br>Mail</a>
-              </div>
-              <div class="thirds">
-                
-              <a href="https://www.linkedin.com/in/aayushh-yadav-14708a22b/"
-              ><i class="fa-brands fa-linkedin"></i
-            ><br>LInkedIn</a>
-            
-              </div>
-    
-          </div>
-          </div>
-          
-  
-  
-          
-          </div>
-        </div>
-       
-        
-      </section>
-    </main>
-  </body>
+  /* ---------- SECTIONS ---------- */
+  section{padding:88px 0; border-bottom:1px solid var(--line);}
+  .section-head{margin-bottom:44px;}
+  .section-head h2{font-size:1.9rem; margin-top:10px;}
 
-  <div class="footer">
-    
-     
-        <div class="footer-col">
-          <h4>About Aayushh</h4>
-          <p>
-            A web developer skilled in HTML, CSS, JavaScript, and Node.js is
-            adept at crafting visually engaging, responsive, and interactive
-            websites and web applications. They can manage both front-end and
-            back-end development, ensuring robust and user-friendly online
-            experiences.
-          </p>
-        </div>
+  /* about */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+  }
+  @media (max-width:780px){ .about-grid{grid-template-columns:1fr;} }
+  .about-grid p{color:var(--text-muted); margin-bottom:16px;}
+  .stat-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .stat{
+    background:var(--surface);
+    padding:22px 18px;
+  }
+  .stat .num{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.8rem;
+    font-weight:700;
+    color:var(--amber);
+  }
+  .stat .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--text-muted);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-top:4px;
+  }
 
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">about me</a></li>
-            <li><a href="#">services</a></li>
-            <li><a href="#">Projects</a></li>
-          </ul>
-        </div>
+  /* skills */
+  .skills-cols{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+  }
+  @media (max-width:780px){ .skills-cols{grid-template-columns:1fr;} }
+  .skill-col{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px;
+  }
+  .skill-col h3{
+    font-size:1.1rem;
+    margin-bottom:6px;
+  }
+  .skill-col .skill-sub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--text-muted);
+    margin-bottom:20px;
+  }
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    padding:6px 12px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    color:var(--text-muted);
+    transition:all 0.2s;
+  }
+  .skill-col:nth-child(1) .chip:hover{border-color:var(--blue); color:var(--blue);}
+  .skill-col:nth-child(2) .chip:hover{border-color:var(--amber); color:var(--amber);}
 
-        <div class="footer-col">
-          <h4>Get help</h4>
-          <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Payment Methods</a></li>
-            <li><a href="#">Privacy policy</a></li>
-            <li><a href="#">github</a></li>
-          </ul>
-        </div>
+  /* projects */
+  .project-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  @media (max-width:780px){ .project-grid{grid-template-columns:1fr;} }
+  .project{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    transition:border-color 0.2s, transform 0.2s;
+  }
+  .project:hover{border-color:var(--amber); transform:translateY(-3px);}
+  .project-kind{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .project-kind.ai{color:var(--blue);}
+  .project-kind.full{color:var(--amber);}
+  .project h3{font-size:1.15rem; margin:10px 0 10px;}
+  .project p{color:var(--text-muted); font-size:0.92rem; margin-bottom:18px; flex-grow:1;}
+  .project .chip-row{margin-bottom:16px;}
+  .project .chip{font-size:0.7rem; padding:4px 10px;}
+  .project-links{
+    display:flex; gap:16px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    border-top:1px solid var(--line);
+    padding-top:16px;
+  }
+  .project-links a{color:var(--text-muted); transition:color 0.2s;}
+  .project-links a:hover{color:var(--text);}
 
-        <div class="footer-col">
-          <h4>Follow me</h4>
-          <div class="social-links">
-            <a href="https://github.com/aayushh-251307"
-            ><i class="fa-brands fa-github" ></i
-          ></a>
-          <!-- <a href="https://www.linkedin.com/in/aayushh-yadav-14708a22b/"
-            ><i class="fa-brands fa-twitter"></i
-          ></a> -->
-          <a href="mailto:aayushhyadava@gmail.com"
-            ><i class="material-icons">mail</i></i
-          ></a>
-          <a href="https://www.linkedin.com/in/aayushh-yadav-14708a22b/"
-            ><i class="fa-brands fa-linkedin"></i
-          ></a>
-          <!-- <a href=""><i class="fa-brands fa-mail"></i></a> -->
-          </div>
-         
-        
-      
+  /* experience */
+  .timeline{border-left:1px solid var(--line); margin-left:6px;}
+  .tl-item{
+    position:relative;
+    padding:0 0 40px 32px;
+  }
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    left:-5px; top:4px;
+    width:9px; height:9px;
+    background:var(--ink);
+    border:2px solid var(--amber);
+    border-radius:50%;
+  }
+  .tl-date{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--text-muted);
+    margin-bottom:6px;
+  }
+  .tl-item h3{font-size:1.05rem; margin-bottom:4px;}
+  .tl-role{font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color:var(--blue); margin-bottom:10px;}
+  .tl-item p{color:var(--text-muted); font-size:0.92rem; max-width:60ch;}
+
+  /* contact */
+  .contact-box{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:48px;
+    text-align:center;
+  }
+  .contact-box h2{font-size:2rem; margin-bottom:14px;}
+  .contact-box p{color:var(--text-muted); max-width:48ch; margin:0 auto 32px;}
+  .contact-links{
+    display:flex; justify-content:center; gap:16px; flex-wrap:wrap;
+  }
+
+  /* additional skills (quiet, reference-only) */
+  .addl-skills{
+    border-bottom:1px solid var(--line);
+    padding:56px 0;
+  }
+  .addl-skills .section-head h2{font-size:1.3rem;}
+  .addl-skills .section-head .tag{color:var(--text-muted);}
+  .addl-skills .section-head .tag::before{background:var(--text-muted);}
+  .addl-list{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:10px 24px;
+    font-size:0.88rem;
+  }
+  @media (max-width:640px){ .addl-list{grid-template-columns:1fr;} }
+  .addl-list .k{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--text-muted);
+    letter-spacing:0.04em;
+    padding-top:2px;
+  }
+  .addl-list .v{color:var(--text-muted);}
+  .addl-list .v b{color:var(--text); font-weight:500;}
+
+  footer{
+    padding:32px 0;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--text-muted);
+  }
+
+  /* scroll reveal */
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity 0.6s ease, transform 0.6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+    .reveal{opacity:1; transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">A<span>.</span>YADAV</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
     </div>
-    
   </div>
-  <div class="foot-copy">
-    <p>&copy|All rights are reserved</p>
-  </div>
+</nav>
 
-  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-  <script>
-    var typed = new Typed("#element", {
-      strings: ["<b>frontend developer</b>", "<b>Web development</b>"],
-      typeSpeed: 50,
-    });
-  </script>
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow tag">Available for new roles</div>
+      <h1 class="name">Aayush Yadav</h1>
+      <div class="role-line">Fullstack Engineer <span class="sep">×</span> AI Engineer</div>
+      <p class="pitch">I build products end to end — from Postgres schema to React interface — and increasingly, from training data to the model sitting behind the API. Six years shipping software, the last two spent wiring LLMs into real products.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">View projects →</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">Resume ↓</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="stack">
+        <div class="layer">
+          <div class="layer-top">
+            <div>
+              <div class="layer-label">LAYER 04 — INTERFACE</div>
+              <div class="layer-name">Frontend</div>
+            </div>
+          </div>
+          <div class="layer-detail">React · TypeScript · Next.js · Tailwind</div>
+        </div>
+        <div class="layer">
+          <div class="layer-top">
+            <div>
+              <div class="layer-label">LAYER 03 — SERVICES</div>
+              <div class="layer-name">Backend &amp; APIs</div>
+            </div>
+          </div>
+          <div class="layer-detail">Node.js · Python · FastAPI · GraphQL · gRPC</div>
+        </div>
+        <div class="layer">
+          <div class="layer-top">
+            <div>
+              <div class="layer-label">LAYER 02 — PERSISTENCE</div>
+              <div class="layer-name">Data</div>
+            </div>
+          </div>
+          <div class="layer-detail">PostgreSQL · Redis · pgvector · S3</div>
+        </div>
+        <div class="layer">
+          <div class="layer-top">
+            <div>
+              <div class="layer-label">LAYER 01 — INTELLIGENCE</div>
+              <div class="layer-name">AI / ML</div>
+            </div>
+          </div>
+          <div class="layer-detail">PyTorch · LangChain · RAG pipelines · fine-tuning</div>
+        </div>
+      </div>
+      <div class="stack-caption">hover a layer — this is the actual stack</div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">01 / About</div>
+      <h2>Full stack, both senses of the word</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>I started as a backend engineer, moved into frontend because no one else on the team would touch CSS, and picked up ML because the product needed a recommendation engine and there wasn't a data science team to hand it to. That path is basically my whole pitch: I don't wait at the edge of my job title.</p>
+        <p>Most recently I've been building retrieval-augmented systems and fine-tuning small models for production use cases — while still owning the infrastructure and UI those systems live in. I like being the person who can take a feature from a whiteboard sketch to a shipped, monitored, actually-used piece of software.</p>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="num">6+</div><div class="label">Years shipping</div></div>
+        <div class="stat"><div class="num">12</div><div class="label">Prod. ML systems</div></div>
+        <div class="stat"><div class="num">3</div><div class="label">Companies</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">02 / Skills</div>
+      <h2>What I actually use</h2>
+    </div>
+    <div class="skills-cols">
+      <div class="skill-col">
+        <h3>Fullstack Engineering</h3>
+        <div class="skill-sub">// product, infra, everything between</div>
+        <div class="chip-row">
+          <span class="chip">TypeScript</span>
+          <span class="chip">React / Next.js</span>
+          <span class="chip">Node.js</span>
+          <span class="chip">Python</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">GraphQL</span>
+          <span class="chip">Docker</span>
+          <span class="chip">AWS</span>
+          <span class="chip">CI/CD</span>
+          <span class="chip">System Design</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <h3>AI Engineering</h3>
+        <div class="skill-sub">// models, pipelines, evaluation</div>
+        <div class="chip-row">
+          <span class="chip">PyTorch</span>
+          <span class="chip">LLM Fine-tuning</span>
+          <span class="chip">RAG Architecture</span>
+          <span class="chip">LangChain</span>
+          <span class="chip">Vector Databases</span>
+          <span class="chip">Prompt Engineering</span>
+          <span class="chip">Model Evaluation</span>
+          <span class="chip">Hugging Face</span>
+          <span class="chip">MLOps</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">03 / Projects</div>
+      <h2>Selected work</h2>
+    </div>
+    <div class="project-grid">
+
+      <div class="project">
+        <div class="project-kind ai">AI Engineering</div>
+        <h3>Support Ticket Copilot</h3>
+        <p>RAG system over three years of support tickets and docs, cutting first-response time by 40% for a 30-person support team. Built the retrieval pipeline, eval harness, and the agent UI.</p>
+        <div class="chip-row">
+          <span class="chip">Python</span><span class="chip">pgvector</span><span class="chip">FastAPI</span><span class="chip">React</span>
+        </div>
+        <div class="project-links">
+          <a href="#">Case study →</a>
+          <a href="#">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-kind full">Fullstack</div>
+        <h3>Realtime Ops Dashboard</h3>
+        <p>Rebuilt a legacy internal tool as a realtime dashboard over WebSockets, replacing a 15-minute polling cycle. Reduced infra spend 30% by moving aggregation to the edge.</p>
+        <div class="chip-row">
+          <span class="chip">Next.js</span><span class="chip">WebSockets</span><span class="chip">Redis</span><span class="chip">AWS</span>
+        </div>
+        <div class="project-links">
+          <a href="#">Case study →</a>
+          <a href="#">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-kind ai">AI Engineering</div>
+        <h3>Fine-tuned Categorization Model</h3>
+        <p>Fine-tuned an open-weight model to replace a brittle rules engine for content categorization, improving accuracy from 71% to 94% and cutting inference cost 5x versus the prior API-based approach.</p>
+        <div class="chip-row">
+          <span class="chip">PyTorch</span><span class="chip">Hugging Face</span><span class="chip">MLOps</span>
+        </div>
+        <div class="project-links">
+          <a href="#">Case study →</a>
+          <a href="#">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-kind full">Fullstack</div>
+        <h3>Multi-tenant Billing Platform</h3>
+        <p>Designed and built the billing and entitlements system from scratch for a B2B SaaS product, handling usage-based pricing across 200+ enterprise accounts.</p>
+        <div class="chip-row">
+          <span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">Stripe</span><span class="chip">GraphQL</span>
+        </div>
+        <div class="project-links">
+          <a href="#">Case study →</a>
+          <a href="#">GitHub →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">04 / Experience</div>
+      <h2>Where I've worked</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Aug 2025 — Dec 2025</div>
+        <h3>Capgemini <span style="color:var(--text-muted); font-weight:400;">(Contract via Alois Solutions Pvt. Ltd.)</span></h3>
+        <div class="tl-role">Technical Support Associate — US Healthcare Operations, Noida</div>
+        <p>Provided L1/L2 support across 50+ daily service requests in Salesforce CRM, maintaining consistent SLA compliance. Owned the end-to-end case lifecycle — assignment, escalation, documentation, closure — and processed enrollment/eligibility requests for US healthcare clients with 100% data accuracy. Collaborated cross-functionally on recurring issues and contributed to the team's knowledge base.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2022 — 2025</div>
+        <h3>Dr. A.P.J. Abdul Kalam Technical University, UP</h3>
+        <div class="tl-role">B.Tech, Computer Science Engineering — CGPA 7.7/10</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2019 — 2022</div>
+        <h3>Govt. Polytechnic Chariyaon, Devria, UP</h3>
+        <div class="tl-role">Diploma, Electrical Engineering — 81%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="addl-skills">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:28px;">
+      <div class="tag">Also worked with</div>
+      <h2>Additional tools &amp; processes</h2>
+    </div>
+    <div class="addl-list">
+      <div class="k">TICKETING / CRM</div>
+      <div class="v"><b>Salesforce CRM</b>, ServiceNow (basic), ITSM ticketing</div>
+
+      <div class="k">OPERATING SYSTEMS</div>
+      <div class="v"><b>Windows 10 / 11</b>, Windows Server (basic administration)</div>
+
+      <div class="k">DIRECTORY SERVICES</div>
+      <div class="v"><b>Active Directory</b> — user account management, Group Policy, access permissions</div>
+
+      <div class="k">CLOUD &amp; NETWORKING</div>
+      <div class="v"><b>Microsoft Azure</b> (admin basics), VPN (GlobalProtect), TCP/IP, DNS</div>
+
+      <div class="k">ENTERPRISE TOOLS</div>
+      <div class="v">Citrix Workspace, Microsoft Outlook, Oracle-based applications, MS Office 365</div>
+
+      <div class="k">SUPPORT PROCESSES</div>
+      <div class="v">Incident management, SLA management, root cause analysis, ticket escalation</div>
+
+      <div class="k">HARDWARE</div>
+      <div class="v">Printer setup, device configuration, network troubleshooting</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="contact-box">
+      <div class="tag" style="justify-content:center;">05 / Contact</div>
+      <h2>Let's build something</h2>
+      <p>Open to fullstack and AI engineering roles — happy to talk about a specific opening or just compare notes on what you're building.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:aayushhyadava@gmail.com">aayushhyadava@gmail.com</a>
+        <a class="btn btn-ghost" href="tel:+918924868269">+91-8924868269</a>
+        <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="mono" style="color:var(--text-muted); font-size:0.78rem; margin-top:20px;">Ghazipur, Uttar Pradesh</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built by Aayush Yadav · Last updated 2026
+</footer>
+
+<script>
+  // scroll reveal
+  document.querySelectorAll('section, header .layer').forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
 </html>
